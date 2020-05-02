@@ -68,7 +68,7 @@ class SiteController extends Controller
         $popular = Article::getPopular();
         $recent = Article::getRecent();
         $categories = Category::getAll();
-        
+
         return $this->render('index',[
             'articles'=>$data['articles'],
             'pagination'=>$data['pagination'],
@@ -77,7 +77,7 @@ class SiteController extends Controller
             'categories'=>$categories
         ]);
     }
-    
+
     public function actionView($id)
     {
         $article = Article::findOne($id);
@@ -88,7 +88,7 @@ class SiteController extends Controller
         $commentForm = new CommentForm();
 
         $article->viewedCounter();
-        
+
         return $this->render('single',[
             'article'=>$article,
             'popular'=>$popular,
@@ -98,7 +98,7 @@ class SiteController extends Controller
             'commentForm'=>$commentForm
         ]);
     }
-    
+
     public function actionCategory($id)
     {
 
@@ -106,7 +106,7 @@ class SiteController extends Controller
         $popular = Article::getPopular();
         $recent = Article::getRecent();
         $categories = Category::getAll();
-        
+
         return $this->render('category',[
             'articles'=>$data['articles'],
             'pagination'=>$data['pagination'],
@@ -119,7 +119,7 @@ class SiteController extends Controller
     public function actionComment($id)
     {
         $model = new CommentForm();
-        
+
         if(Yii::$app->request->isPost)
         {
             $model->load(Yii::$app->request->post());
